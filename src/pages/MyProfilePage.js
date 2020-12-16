@@ -30,7 +30,7 @@ const MyProfilePage = () =>{
             <div className ="jumbotron">
                 <h1>@{user.username}</h1>
             </div>
-            <Button onClick{() => {history.push}}>Upload Images</Button>
+            <Button>Upload Images</Button>
             <UserImages userId={user.id}/>
         </>
     
