@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import UserImages from '../containers/UserImages'
-import { Button } from 'reactstrap'
+import {  Button } from 'reactstrap'
 import { useHistory } from 'react-router-dom'
 
 const MyProfilePage = () =>{
-    const history = useHistory
+    const history = useHistory()
 
     const [user, setUser] =useState({})
 
@@ -30,7 +30,7 @@ const MyProfilePage = () =>{
             <div className ="jumbotron">
                 <h1>@{user.username}</h1>
             </div>
-            <Button>Upload Images</Button>
+            <Button onClick={() => {history.push("/upload")}}>Upload Images</Button>
             <UserImages userId={user.id}/>
         </>
     

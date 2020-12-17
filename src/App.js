@@ -9,6 +9,8 @@ import NavBarDisplay from './components/NavBarDisplay';
 import { ToastContainer } from 'react-toastify';
 import MyProfilePage from './pages/MyProfilePage'
 
+import UploadPage from './pages/UploadPage';
+
 function App() {
   
   const [loggedIn, setLoggedIn] = useState(
@@ -43,7 +45,7 @@ function App() {
     <>
         <NavBarDisplay loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>    
         <Route exact path="/" render = {(props) => <HomePage{...props} users={users}/>}/>
-        
+          
         <Route path="/users/:id" component={UserProfilePage} /> 
         <Route exact path="/profile" component={MyProfilePage} />
         <Route exact path="/upload" component={UploadPage} />

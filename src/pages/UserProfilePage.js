@@ -1,51 +1,35 @@
-import React, {useState,useEffect} from 'react';
-import axios from 'axios';
-import LoadingIndicator from '../components/LoadingIndicator'
-import {Card, CardImg} from 'reactstrap';
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
+import { useParams } from 'react-router-dom';
+import UserImages from '../containers/UserImages';
 
-const UserImages = ({userId}) => {
-    
-    // console.log(userId)
-    const [userImages, setUserImages] = useState([]);
-    const [isloading, setIsLoading] = useState(true);
+const UserProfilePage = () =>{
 
-    useEffect(() => {
-        //perform a GET request
-        axios.get(`https://insta.nextacademy.com/api/v2/images?userId=${userId}`)
-        .then(result => {
-          // If successful, we do stuffs with 'result'
-          //console.log(result)
-          setUserImages(result.data)
-          setIsLoading(false)
+  let user = useParams();
+  const [users, setUsers] = useState({})
 
-        })
-        .catch(error => {
-          // If unsuccessful, we notify users what went wrong
-          console.log('ERROR: ', error)
-        })
-    
-      }, [userId])
+  useEffect(() => {
+    axios.get(`https://insta.nextacademy.com/api/v1/users/${user.id}`)
+    .then(result =>{
+      setUsers(result.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }, [user.id])
 
-      if(isloading){
-        return <LoadingIndicator width="100px" height="100px" color="blue" /> 
-      }
-
-      return (
-        
-          <div style={{display:"flex", flexWrap:"wrap", alignItems:"center"}}>
-            {userImages.map((eachImg,index) => {
-                
-                return (
-                    <Card style={{width:"200px"}}>
-                      <CardImg src={eachImg.url} alt="Card image cap" style={{width:"150px"}} />
-
-                    </Card> 
-                )
-                 
-            })}
-          </div> 
-        
-      );
+  return (
+    <>
+      <div>
+        <h2>@{users.username}</h2>
+        <img src={users.profileImage} className="rounded-circle" width="200" alt="profilepic"/>
+      </div>
+      <div>
+        <UserImages userId ={users.id} />
+      </div>
+    </>
+  )
 
 }
-export default UserImages;
+
+export default UserProfilePage

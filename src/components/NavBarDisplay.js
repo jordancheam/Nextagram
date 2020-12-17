@@ -47,15 +47,21 @@ const NavBarDisplay = ({loggedIn, setLoggedIn}) => {
                     <NavItem>
                         <NavLink style={{cursor:"pointer"}} onClick= {() => {history.push("/")}}>Home</NavLink>
                     </NavItem>
-                    <NavItem>
+                    
+                
                         {
                             loggedIn ?
-                            <NavLink style={{cursor:"pointer"}} onClick={() => handleLogout()}>Log Out</NavLink>
+                            <>
+                            <NavItem><NavLink style={{cursor:"pointer"}} onClick={() => {history.push("/profile")}}>My Profile</NavLink></NavItem>
+                            <NavItem><NavLink style={{cursor:"pointer"}} onClick={() => handleLogout()}>Log Out</NavLink></NavItem>
+                            </>
+                            
+                            
                             :
                             <NavLink style={{cursor:"pointer"}} onClick= {toggleModal}>Log In</NavLink>
                         }
                         
-                    </NavItem>
+                
 
                 </Nav>
             </Collapse>

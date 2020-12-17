@@ -4,7 +4,7 @@ import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
 
 
-const AuthModal = ({isOpen, toggle}) => {
+const AuthModal = ({isOpen, toggle, setLoggedIn}) => {
   const [isLogin, setIsLogin] = useState(true)
   const toggleIsLogin = () => {
       setIsLogin(!isLogin)
@@ -14,8 +14,8 @@ const AuthModal = ({isOpen, toggle}) => {
     <Modal isOpen={isOpen} toggle={toggle} >
         {
           isLogin
-            ? <LoginForm toggle={toggle} toggleIsLogin={toggleIsLogin}/>
-            : <SignUpForm toggle={toggle} toggleIsLogin={toggleIsLogin}/>
+            ? <LoginForm toggle={toggle} toggleIsLogin={toggleIsLogin} setLoggedIn={setLoggedIn}/>
+            : <SignUpForm toggle={toggle} toggleIsLogin={toggleIsLogin} setLoggedIn={setLoggedIn}/>
         }
     </Modal>
   )
